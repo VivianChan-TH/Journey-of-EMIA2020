@@ -2,25 +2,20 @@
 <html>
 
 <head>
-    <title>Terminal Website</title>
-    <link rel="stylesheet" type="text/css" href="terminal.css">
+    <title>EMIA2020 Personal Reflection</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/xterm/css/xterm.css">
+    <style>
+        html,
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="terminal">
-        <div class="terminal-header">
-            <span class="button red"></span>
-            <span class="button yellow"></span>
-            <span class="button green"></span>
-        </div>
-        <div class="terminal-body">
-            <div class="input-line">
-                <span class="prompt">$</span>
-                <input type="text" id="command-input">
-            </div>
-            <div id="output-container"></div>
-        </div>
-    </div>
+    <div id="terminal-container"></div>
+    <script src="node_modules/xterm/lib/xterm.js"></script>
     <script src="terminal.js"></script>
 </body>
 

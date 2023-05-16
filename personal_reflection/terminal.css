@@ -7,8 +7,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 400px;
+    width: 80%;
+    height: 80%;
     background-color: #000;
     color: #0f0;
     border-radius: 5px;
@@ -19,7 +19,8 @@ body {
   .terminal-header {
     height: 30px;
     background-color: #444;
-    text-align: center;
+    display: flex;
+    align-items: center;
   }
   
   .button {
@@ -42,16 +43,30 @@ body {
     background-color: #0f0;
   }
   
+  .title {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   .terminal-body {
-    height: 370px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 30px);
     padding: 10px;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: #0f0 #222;
   }
   
+  .output-container {
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+  
   .input-line {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
   }
   
   .prompt {
@@ -59,8 +74,15 @@ body {
     margin-right: 5px;
   }
   
-  #output-container {
+  #command-input {
+    flex-grow: 1;
+    background-color: transparent;
     color: #0f0;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    caret-color: #0f0;
   }
   
   img {
