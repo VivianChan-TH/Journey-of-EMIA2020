@@ -331,6 +331,15 @@ function handleCommand() {
             writeOutput('and this terminal actually is a part of the learning.:)');
             writeOutput('(Not-fun fact: I never did web development before, so');
             writeOutput('thanks to my teammate for carrying through the prototyping process.)');
+            writeOutput('');
+            writeOutput('Here are all the tryouts I did ... (right click to copy due to tech issue)');
+            writeOutput('1. ball bouncing in canvas:\r\nhttps://vivianchan-th.github.io/Journey-of-EMIA2020/test_animation/try.html');
+            writeOutput('');
+            writeOutput('2. train moving to the right:\r\nhttps://vivianchan-th.github.io/Journey-of-EMIA2020/test_animation/more_try.html');
+            writeOutput('');
+            writeOutput('3. embeding hamster interactive page:\r\nhttps://vivianchan-th.github.io/Journey-of-EMIA2020/test_animation/embed.html');
+            writeOutput('');
+            writeOutput('4. strange dimension cat:\r\nhttps://vivianchan-th.github.io/Journey-of-EMIA2020/test_animation/cat.html');
             //
             writeOutput('');
             writeOutput('Next: <secret> command, clue: Always ask ???.');
