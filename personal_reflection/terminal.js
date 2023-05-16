@@ -24,7 +24,6 @@ container.style.width = `${window.innerWidth}px`;
 term.open(container);
 
 
-term.write('Welcome to the terminal for EMIA2020 personal reflection! \r\nType "help" to see all available commands.\r\n$ ');
 
 let cmdBuffer = '';
 
@@ -39,9 +38,19 @@ const writeInput = (text) => {
     // term.write('\x1b[38;5;196m' + text + '\x1b[0m');
 };
 
+const writeOutput = (text) => {
+    term.write('\r\n' + text);
+};
+
 const writeError = (text) => {
     term.write('\r\n[\x1b[38;5;196mError\x1b[0m]' + text);
 };
+
+term.write('Welcome to the terminal for EMIA2020 personal reflection!');
+writeOutput('You can start by entering "profile primary"');
+writeOutput('Type "help" to see all available commands.');
+writeOutput('(Ignore the strange dimension, I\'m a newbie to web.)😐');
+writeOutput('$ ');
 
 term.onKey((e) => {
     const printable = !e.domEvent.altKey && !e.domEvent.altGraphKey && !e.domEvent.ctrlKey && !e.domEvent.metaKey;
@@ -67,6 +76,7 @@ const commands = [
     { name: 'activity', description: 'Reflection on each activity' },
     { name: 'suggestion', description: 'Small suggestions to the course' },
     { name: 'share', description: 'Things to share about the course' },
+    { name: 'echo', description: 'Print the given string to the terminal' },
     { name: 'date', description: 'Print the current date and time' },
     { name: 'clear', description: 'Clear the terminal screen' },
     { name: 'help', description: 'Display a list of available commands' },
@@ -116,140 +126,267 @@ function handleCommand() {
         // Handle "profile" command
         const input = args[1];
         if (input === 'primary') {
-            term.write('\r\nI had a lot of project experience starting from primary school, \r\nas different subjects like to ask us to form groups to give presentations \r\nin different forms.');
-            term.write('\r\n');
-            term.write('\r\nThe most memorable one is the worst one in P6 which there are 8 people \r\nin the group and all members apart from me are free riders.');
+            writeOutput('I had a lot of project experience starting from primary school,');
+            writeOutput('as different subjects like to ask us to form groups to give presentations');
+            writeOutput('in different forms.');
+            writeOutput('');
+            writeOutput('The most memorable one is the worst one in P6 which there are 8 people');
+            writeOutput('in the group and all members apart from me are free riders.');
             // ascii art
-            term.write("\r\n\x1b[31m _______ ");
-            term.write("\r\n\x1b[31m/       \\ ");
-            term.write("\r\n\x1b[31m|  ̿̿ | ̿̿  |");
-            term.write("\r\n\x1b[31m\\___^___/ \x1b[0m");
+            writeOutput("\x1b[31m _______ ");
+            writeOutput("\x1b[31m/       \\ ");
+            writeOutput("\x1b[31m|  ̿̿ | ̿̿  |");
+            writeOutput("\x1b[31m\\___^___/ \x1b[0m");
+            writeOutput('');
+            writeOutput('\x1b[35m~ Vivian ~\x1b[0m');
+            //
+            writeOutput('');
+            writeOutput('Next: profile secondary');
         } else if (input === 'secondary') {
-            term.write('\r\nMy secondary school actually offered us project learning course in F2. \r\nThough I don\'t seem to learn anything at all as the teacher only gives out tasks\r\nbut not techniques.');
-            term.write('\r\n');
-            term.write('\r\nIn higher form, everyone need to do a thing called IES, that is a one person, \r\nkind of like research, project that needs primary and secondary researches. \r\nI only conducted questionnaires at that time but not interviews. \r\nI did a topic on e-learning (before covid even started) which in the end having great score.👍');
+            writeOutput('My secondary school actually offered us project learning course in F2. \r\nThough I don\'t seem to learn anything at all as the teacher only gives out tasks\r\nbut not techniques.');
+            writeOutput('');
+            writeOutput('In higher form, everyone need to do a thing called IES, that is a one person, \r\nkind of like research, project that needs primary and secondary researches. \r\nI only conducted questionnaires at that time but not interviews. \r\nI did a topic on e-learning (before covid even started) which in the end having great score.👍');
+            writeOutput('');
+            writeOutput('\x1b[35m~ Vivian ~\x1b[0m');
+            //
+            writeOutput('');
+            writeOutput('Next: profile now');
         } else if (input === 'now') {
-            term.write('\r\nI am a CS year 2 student and a Robotics Team member. \r\nMy daily activity is to undergo projects. \r\nThis semester, I am actually taking COMP3111 Software Engineering that has a \r\nsmall scale project of 3 people.');
+            writeOutput('I am a CS year 2 student and a Robotics Team member. \r\nMy daily activity is to undergo projects. \r\nThis semester, I am actually taking COMP3111 Software Engineering that has a \r\nsmall scale project of 3 people.');
+            writeOutput('');
+            writeOutput('\x1b[35m~ Vivian ~\x1b[0m');
+            //
+            writeOutput('');
+            writeOutput('Next: activity intro');
         } else {
             if (input !== 'help') {
                 writeError('Insufficient argument.');
-                term.write('\r\nprofile <area>');
+                writeOutput('profile <area>');
             }
             profiles.forEach((profiles) => {
-                term.write('\r\n' + profiles.name.padEnd(25, ' ') + '- ' + profiles.description);
+                writeOutput(profiles.name.padEnd(25, ' ') + '- ' + profiles.description);
             });
         }
     } else if (cmd === 'activity') {
         // Handle "profile" command
         const input = args[1];
         if (input === 'intro') {
-            term.write('\r\n...');
-            term.write('\r\nProgress: |██████-------------------------------------------| 10.0% Complete');
+            writeOutput('I have learnt about the steps in a project.');
+            writeOutput('1. Interview');
+            writeOutput('2. Design');
+            writeOutput('3. Craft');
+            writeOutput('4. Feedback');
+            writeOutput('Progress: |█████--------------------------------------------| 10.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity field');
         } else if (input === 'field') {
-            term.write('\r\n...');
+            writeOutput('I never knew wellbeing can be a topic of sustainability.');
+            writeOutput('Mindful walking is new to me but seems not useful for me.');
+            writeOutput('Until this day I found out there are many data dangling about our campus');
+            writeOutput('without us noticing.');
+            writeOutput('Also, we need to keep in mind about user\'s feelings');
+            writeOutput('It\'s a pity that I am not able to join the other section of the campus tour.😢');
+            writeOutput('Progress: |██████████---------------------------------------| 20.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity empathy');
         } else if (input === 'empathy') {
-            term.write('\r\n...');
+            writeOutput('I understand that failure and uncertainty is usual in daily life.');
+            writeOutput('This greatly affect how I treat my project and decisions in the future.');
+            writeOutput('This course emphasizes primary research which I lack experience to');
+            writeOutput('do so in the past projects.');
+            writeOutput('I also learn that empathy is different from sympathy.');
+            writeOutput('Empathy is a lot better as it means getting into other people\'s shoes, ');
+            writeOutput('while sympathy is just looking from the high ground at other\'s pain.');
+            writeOutput('I can still remember that video shown in class haha🤣.');
+            writeOutput('Progress: |███████████████----------------------------------| 30.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity interview');
         } else if (input === 'interview') {
-            term.write('\r\n...');
+            writeOutput('I learnt about different types of interview in the previous class');
+            writeOutput('and used semi-structural ones that is more suitable.');
+            writeOutput('At first, I have difficulty in getting a long interview.😫');
+            writeOutput('Besides, asking follow up question is hard.');
+            writeOutput('Gradually, I learn to ask why and have an hour long interview');
+            writeOutput('with the student counsellors as the stakeholder of my project.');
+            writeOutput('Progress: |████████████████████-----------------------------| 40.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity problem');
         } else if (input === 'problem') {
-            term.write('\r\n...');
+            writeOutput('Remembering the bridge example, when we are finding a solution,');
+            writeOutput('think of what is needed instead of wanted.');
+            writeOutput('And again, asking whyyyyyyyy!');
+            writeOutput('Net of opportunity is quite useful actually to brainstorm.');
+            writeOutput('I am a bit reluctant to using miro at first but now totally adapted :).');
+            writeOutput('Progress: |█████████████████████████------------------------| 50.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity brainstorm');
         } else if (input === 'brainstorm') {
-            term.write('\r\n...');
+            writeOutput('Diverging and converging thinking is really useful.');
+            writeOutput('Though sometimes I just stuck at diverging so');
+            writeOutput('excessively that I cannot really converge lol.😂');
+            writeOutput('Using stimulating question is fun but maybe due to lack of skills, ');
+            writeOutput('all those fun ideas are not feasible.');
+            writeOutput('Also, visualizing of ideas really help when there are plenty!');
+            writeOutput('Progress: |██████████████████████████████-------------------| 60.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity prototype');
         } else if (input === 'prototype') {
-            term.write('\r\n...');
+            writeOutput('As in robotics team, we also do prototype but I tend to only call the usable');
+            writeOutput('ones as prototype. Now I know that there are concept and POC prototype too!');
+            writeOutput('Also, testing is important and during which, conductor should not defend their');
+            writeOutput('own product. Reproducing the necessary environment is also necessary for good results.');
+            writeOutput('Progress: |███████████████████████████████████--------------| 70.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity management');
         } else if (input === 'management') {
-            term.write('\r\n...');
+            writeOutput('Some overlap with COMP3111 including documentation, gantt chart and minutes.');
+            writeOutput('In COMP3111, there are burndown chart as well.');
+            writeOutput('Progress: |████████████████████████████████████████---------| 80.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity story');
         } else if (input === 'story') {
-            term.write('\r\n...');
+            writeOutput('Watching different types of story telling in class,');
+            writeOutput('seems like most include humour and catchphrase.');
+            writeOutput('It is hard to think of that as a more "scientific" person.');
+            writeOutput('Progress: |█████████████████████████████████████████████----| 90.0% Complete');
+            //
+            writeOutput('');
+            writeOutput('Next: activity project');
         } else if (input === 'project') {
-            term.write('\r\n...');
+            writeOutput('We actually have struggled the longest time in converging of each step as');
+            writeOutput('most of us are having choice difficulties (not because we have conflict haha).😏');
+            writeOutput('In most cases, all of us don\'t have specific preferences');
+            writeOutput('and get more and more and MORE and MORE and ... MORE ideas.');
+            writeOutput('Progress: |█████████████████████████████████████████████████| 100.0% COMPLETE');
+            //
+            writeOutput('');
+            writeOutput('Next: suggestion feedback');
         } else {
             if (input !== 'help') {
                 writeError('Insufficient argument.');
-                term.write('\r\nactivity <area>');
+                writeOutput('activity <area>');
             }
             activities.forEach((activities) => {
-                term.write('\r\n' + activities.name.padEnd(25, ' ') + '- ' + activities.description);
+                writeOutput('' + activities.name.padEnd(25, ' ') + '- ' + activities.description);
             });
         }
     } else if (cmd === 'suggestion') {
         // Handle "profile" command
         const input = args[1];
         if (input === 'feedback') {
-            term.write('\r\n...');
+            writeOutput('I would love to have feedback in text as well.');
+            //
+            writeOutput('');
+            writeOutput('Next: suggestion materials');
         } else if (input === 'materials') {
-            term.write('\r\n...');
+            writeOutput('Actually if all the assignment can be released in one go or earlier than the');
+            writeOutput('way it is now, I will be able to plan ahead when I have less things to do.');
+            writeOutput('That may cause less deadline fighting, (though not necessarily...)');
+            //
+            writeOutput('');
+            writeOutput('Next: suggestion length');
         } else if (input === 'length') {
-            term.write('\r\n...');
+            writeOutput('I feel like the powerpoint part is still too long.');
+            writeOutput('Even more activities will be better!😆');
+            //
+            writeOutput('');
+            writeOutput('Next: share feelings');
         } else {
             if (input !== 'help') {
                 writeError('Insufficient argument.');
-                term.write('\r\nsuggestion <area>');
+                writeOutput('suggestion <area>');
             }
             suggestions.forEach((suggestions) => {
-                term.write('\r\n' + suggestions.name.padEnd(25, ' ') + '- ' + suggestions.description);
+                writeOutput('' + suggestions.name.padEnd(25, ' ') + '- ' + suggestions.description);
             });
         }
     } else if (cmd === 'share') {
         // Handle "profile" command
         const input = args[1];
         if (input === 'feelings') {
-            term.write('\r\n...');
+            writeOutput('I am actually loving and hating the course at the same time.');
+            writeOutput('It is useful and fun, choosing our own topic is interesting, but');
+            writeOutput('when I saw the time I spent on it and the time I spent for revising');
+            writeOutput('other courses, it is a pain as those courses has much less time spent');
+            writeOutput('than normally should. While I am also in robotics team which requires');
+            writeOutput('work most of the time when there is no lectures. It is quite hard for me');
+            writeOutput('to balance the time while not handing in garbage to this course.');
+            writeOutput('Quoted from a lab mate that does not study AI extended major, he said,');
+            writeOutput('"How to deal with lack of sleep problem(early POV of our team) is to');
+            writeOutput('not study EMIA2020 or late drop robotics team." Just a fun note.');
+            writeOutput('Though I am not regretting to take this as I really learn something.');
+            //
+            writeOutput('');
+            writeOutput('Next: share new');
         } else if (input === 'new') {
-            term.write('\r\n...');
+            writeOutput('This course actually push me to learn new things (== web development)');
+            writeOutput('and this terminal actually is a part of the learning.:)');
+            writeOutput('(Not-fun fact: I never did web development before, so');
+            writeOutput('thanks to my teammate for carrying through the prototyping process.)');
+            //
+            writeOutput('');
+            writeOutput('Next: <secret> command, clue: Always ask ???.');
         } else {
             if (input !== 'help') {
                 writeError('Insufficient argument.');
-                term.write('\r\nshare <area>');
+                writeOutput('share <area>');
             }
             shares.forEach((shares) => {
-                term.write('\r\n' + shares.name.padEnd(25, ' ') + '- ' + shares.description);
+                writeOutput('' + shares.name.padEnd(25, ' ') + '- ' + shares.description);
             });
         }
     } else if (cmd === 'echo') {
         // Handle "echo" command
         const output = args.slice(1).join(' ');
-        term.write('\r\n' + output);
+        writeOutput('' + output);
     } else if (cmd === 'date') {
         // Handle "date" command
         const date = new Date();
-        term.write('\r\n' + date.toString());
+        writeOutput('' + date.toString());
     } else if (cmd === 'clear') {
         // Handle "clear" command
         term.clear();
     } else if (cmd === 'help') {
         // Handle "help" command
-        term.write('\r\nAvailable commands:');
+        writeOutput('Available commands:');
         commands.forEach((command) => {
-            term.write('\r\n' + command.name.padEnd(25, ' ') + '- ' + command.description);
+            writeOutput('' + command.name.padEnd(25, ' ') + '- ' + command.description);
         });
     } else if (cmd === 'why') {
         // Handle "help" command
-        term.write('\r\nAlways ask ...');
+        writeOutput('Always ask ...');
 
         // ascii art
-        term.write("\r\n\x1b[31m                         ,--,             ");
-        term.write("\r\n\x1b[31m            .---.      ,--.'|             ");
-        term.write("\r\n\x1b[31m           /. ./|   ,--,  | :       ,---, ");
-        term.write("\r\n\x1b[31m       .--'.  ' ;,---.'|  : '      /_ ./| ");
-        term.write("\r\n\x1b[31m      /__./ \\ : ||   | : _' |,---, |  ' : ");
-        term.write("\r\n\x1b[31m  .--'.  '   \\' .:   : |.'  /___/ \\.  : | ");
-        term.write("\r\n\x1b[31m /___/ \\ |    ' '|   ' '  ; :.  \\  \\ ,' ' ");
-        term.write("\r\n\x1b[31m ;   \\  \\;      :'   |  .'. | \\  ;  `  ,' ");
-        term.write("\r\n\x1b[31m \\   ;  `       ||   | :  | '  \\  \\    '  ");
-        term.write("\r\n\x1b[31m  .   \\     .\\  ;'   : |  : ;   '  \\   |  ");
-        term.write("\r\n\x1b[31m    \\   \\   ' \\ ||   | '  ,/     \\  ;  ; ");
-        term.write("\r\n\x1b[31m     :   '  |--\" ;   : ;--'       :  \\  \\ ");
-        term.write("\r\n\x1b[31m      \\   \\ ;    |   ,/            \\  ' ; ");
-        term.write("\r\n\x1b[31m       '---\"     '---'              `--`  \x1b[0m");
-        term.write('\r\nStay curious!');
-        term.write('\r\n(If you are curious, doing this assignment in the form of terminal is for me to learn a little more about web development and most importantly for fun!)');
+        writeOutput("\x1b[31m                         ,--,             ");
+        writeOutput("\x1b[31m            .---.      ,--.'|             ");
+        writeOutput("\x1b[31m           /. ./|   ,--,  | :       ,---, ");
+        writeOutput("\x1b[31m       .--'.  ' ;,---.'|  : '      /_ ./| ");
+        writeOutput("\x1b[31m      /__./ \\ : ||   | : _' |,---, |  ' : ");
+        writeOutput("\x1b[31m  .--'.  '   \\' .:   : |.'  /___/ \\.  : | ");
+        writeOutput("\x1b[31m /___/ \\ |    ' '|   ' '  ; :.  \\  \\ ,' ' ");
+        writeOutput("\x1b[31m ;   \\  \\;      :'   |  .'. | \\  ;  `  ,' ");
+        writeOutput("\x1b[31m \\   ;  `       ||   | :  | '  \\  \\    '  ");
+        writeOutput("\x1b[31m  .   \\     .\\  ;'   : |  : ;   '  \\   |  ");
+        writeOutput("\x1b[31m    \\   \\   ' \\ ||   | '  ,/     \\  ;  ; ");
+        writeOutput("\x1b[31m     :   '  |--\" ;   : ;--'       :  \\  \\ ");
+        writeOutput("\x1b[31m      \\   \\ ;    |   ,/            \\  ' ; ");
+        writeOutput("\x1b[31m       '---\"     '---'              `--`  \x1b[0m");
+        writeOutput('Stay curious!');
+        writeOutput('(If you are curious, doing this assignment in the form of terminal is for me to learn a little more about web development and most importantly for fun!)');
     } else {
         // Handle unknown command
         writeError('Unknown command: ' + cmd + '. Type "help" to see all available commands.');
     }
 
     // Write the prompt and clear the command buffer
-    term.write('\r\n$ ');
+    writeOutput('$ ');
     cmdBuffer = '';
 }
