@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "xterm": "^5.1.0"
+    "xterm": "^5.1.0",
+    "xterm-addon-image": "^0.4.0"
   }
 }
